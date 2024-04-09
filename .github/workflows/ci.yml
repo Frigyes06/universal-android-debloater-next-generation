@@ -83,8 +83,8 @@ jobs:
       - name: ls
         run: ls ./
       - name: Run GRCOV
-        run: grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --ignore '../*' --ignore "/*" -o target/coverage/tests.lcov
+        run: grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --ignore '../*' --ignore "/*" -o ./target/coverage/tests.lcov
       - name: Upload to DeepSource
         env:
           DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
-        run: ./bin/deepsource report --analyzer test-coverage --key rust --value-file target/coverage/tests.lcov
+        run: ./bin/deepsource report --analyzer test-coverage --key rust --value-file ./target/coverage/tests.lcov
