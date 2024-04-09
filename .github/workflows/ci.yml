@@ -81,7 +81,13 @@ jobs:
       - name: Run tests
         run: CARGO_INCREMENTAL=0 RUSTFLAGS='-Cinstrument-coverage' LLVM_PROFILE_FILE='cargo-test-%p-%m.profraw' cargo test
       - name: ls
-        run: ls ./
+        run: |
+          ls
+          ls ./
+          ls target
+          ls ./target
+          ls target/coverage
+          ls ./target/coverage
       - name: Run GRCOV
         run: grcov . --binary-path ./target/debug/ -s . -t lcov --branch --ignore-not-existing --ignore '../*' --ignore "/*" -o ./target/coverage/tests.lcov
       - name: Upload to DeepSource
